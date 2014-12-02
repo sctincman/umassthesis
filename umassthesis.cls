@@ -200,7 +200,7 @@
 }
 
 \renewcommand{\@makechapterhead}[1]{%
-  \begin{singlespacing}
+  \begin{singlespace}
   \vspace*{.5in}%
   {
     \begin{center}
@@ -209,49 +209,49 @@
       \bf\MakeUppercase{#1}\\[1em]
     \end{center}
   }
-  \end{singlespacing}
+  \end{singlespace}
 }
 
 \renewcommand{\@makeschapterhead}[1]{%
-  \begin{singlespacing}
+  \begin{singlespace}
   \vspace*{.5in}%
   {
     \begin{center}
       \bf\MakeUppercase#1\\[1em]
     \end{center}
   }
-  \end{singlespacing}
+  \end{singlespace}
 }
 
 
 %% Table of contents and other lists
 \renewcommand\listoftables{%
   \chapter*{\listtablename}%
-  \begin{singlespacing}
+  \begin{singlespace}
     \addcontentsline{toc}{chapter}{\listtablename}%
     \@mkboth{\listtablename}\listtablename{}
     \vskip 1em
            {\parindent \z@ \raggedright \bf Table{}\par}
            \@starttoc{lot}%
-  \end{singlespacing}
+  \end{singlespace}
 }
 
 \renewcommand\listoffigures{%
   \chapter*{\listfigurename}%
-  \begin{singlespacing}
+  \begin{singlespace}
     \addcontentsline{toc}{chapter}{\listfigurename}%
     \@mkboth{\listfigurename}{\listfigurename}
     \vskip 1em
            {\parindent \z@ \raggedright \bf Figure{}\par}
            \@starttoc{lof}%
 
-  \end{singlespacing}
+  \end{singlespace}
 }
 
 \newcommand\listofappendices{%
     \@appendicestrue % JH appendix code
     \chapter*{\listappendixname}%
-    \begin{singlespacing}
+    \begin{singlespace}
       \addcontentsline{toc}{chapter}{\listappendixname}%
       \@mkboth{\listappendixname}\listappendixname{}
       \vskip 1em
@@ -261,16 +261,16 @@
              %\setcounter{tocdepth}{0}
              \@starttoc{loa}%
              %\setcounter{tocdepth}{4}
-    \end{singlespacing}
+    \end{singlespace}
 }
 
 \renewcommand\tableofcontents{%
   \chapter*{\contentsname
     \@mkboth{\contentsname}\contentsname{}}%
-  \begin{singlespacing}
+  \begin{singlespace}
     \pdfbookmark[0]{\contentsname}{contents}
     \@starttoc{toc}%
-  \end{singlespacing}
+  \end{singlespace}
 }
 
 % There is likely a better way to do this, by accessing a depth counter of somesort
@@ -315,17 +315,16 @@
   \@tempskipa #5\relax
   \ifdim \@tempskipa>\z@
     \begingroup
-  \singlespacing
       #6{%
         \@hangfrom{\hskip #3\relax\@svsec}%
-          \interlinepenalty \@M #8\@@par}%
-    \endgroup
-    \csname #1mark\endcsname{#7}%
-    \addcontentsline{\ext@toc}{#1}{%
-      \ifnum #2>\c@secnumdepth \else
+        \interlinepenalty \@M #8\@@par}%
+      \endgroup
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{\ext@toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
         \protect\numberline{\csname the#1\endcsname}%
-      \fi
-      #7}%
+        \fi
+        #7}%
   \else
     \def\@svsechd{%
       #6{\hskip #3\relax
@@ -397,33 +396,34 @@
   \thispagestyle{empty}
   \pagenumbering{roman}
   \pdfbookmark[0]{Title}{title}
-  \singlespacing
-  \let\footnotesize\small
-  \let\footnoterule\relax
-  \vspace*{1in}
-  \begin{center}%
-    {\bf \MakeUppercase\@title \par}%
-  \end{center}
-  \vfill
-  \centerline{A Dissertation Presented}
-  \vspace*{2em}
-  \centerline{by}
-  \vspace{2em}
-  \begin{center}%
-    {\MakeUppercase\@author}
-  \end{center}
-  \vfill
-  \begin{center}%
-    Submitted to the Graduate School of the\@centercr
-    University of Massachusetts Amherst in partial fulfillment\@centercr
-    of the requirements for the degree of\@centercr
-    \vspace*{1em}
-    \MakeUppercase\@degree\@centercr
-    \vspace*{1em}
-    \@date\@centercr
-    \vspace*{1em}
-    \@program\@centercr
-  \end{center}
+  \begin{singlespace}
+    \let\footnotesize\small
+    \let\footnoterule\relax
+    \vspace*{1in}
+    \begin{center}%
+      {\bf \MakeUppercase\@title \par}%
+    \end{center}
+    \vfill
+    \centerline{A Dissertation Presented}
+    \vspace*{2em}
+    \centerline{by}
+    \vspace{2em}
+    \begin{center}%
+      {\MakeUppercase\@author}
+    \end{center}
+    \vfill
+    \begin{center}%
+      Submitted to the Graduate School of the\@centercr
+      University of Massachusetts Amherst in partial fulfillment\@centercr
+      of the requirements for the degree of\@centercr
+      \vspace*{1em}
+      \MakeUppercase\@degree\@centercr
+      \vspace*{1em}
+      \@date\@centercr
+      \vspace*{1em}
+      \@program\@centercr
+    \end{center}
+  \end{singlespace}
   \vspace*{\fill}
   \null
   \setcounter{footnote}{0}%
@@ -447,24 +447,25 @@
 \newcommand\makesignature{
   \newpage
   \thispagestyle{empty}
-  \singlespacing
-  \vspace*{1in}
-  \begin{center}%
-    {\bf \MakeUppercase\@title \par}%
+  \begin{singlespace}
+    \vspace*{1in}
+    \begin{center}%
+      {\bf \MakeUppercase\@title \par}%
+      \vfill
+          {A Dissertation Presented}\\[1em]
+          {by}\\[1em]
+          {\@author}
+    \end{center}
     \vfill
-    {A Dissertation Presented}\\[1em]
-    {by}\\[1em]
-    {\@author}
-  \end{center}
-  \vfill
-  Approved as to style and content by:\\
-  \the\signaturetokenlist
-  \begin{flushright}
-    \vfill
-    \rule[.1em]{3in}{.1pt}\\
-    \@deptheadname, Department Head\\
-    \@deptheaddept
-  \end{flushright}
+    Approved as to style and content by:\\
+    \the\signaturetokenlist
+    \begin{flushright}
+      \vfill
+      \rule[.1em]{3in}{.1pt}\\
+      \@deptheadname, Department Head\\
+      \@deptheaddept
+    \end{flushright}
+  \end{singlespace}
   \newpage
 }
 
@@ -515,15 +516,15 @@
   \chapter*{\abstractname\@mkboth{\abstractname}{\abstractname}}
   \addcontentsline{toc}{chapter}{\abstractname}
   \begin{center}
-    \begin{doublespacing}
-      \begin{singlespacing}
+    \begin{doublespace}
+      \begin{singlespace}
         \MakeUppercase\@title\\
-      \end{singlespacing}
+      \end{singlespace}
       \MakeUppercase\@date\\
       \MakeUppercase{\@author, }
       \MakeUppercase{\the\degreetokenlist}
       Directed by: \the\abstokenlist\\
-    \end{doublespacing}
+    \end{doublespace}
   \end{center}
 }{
   \newpage
@@ -534,22 +535,20 @@
       \phantomsection %makes sure it points to the right page
      \clearpage
 \hypersetup{bookmarkstype={toc}}
-  \begin{singlespacing}
+  \begin{singlespace}
       \if@appendices
         \clearpage%
         \phantomsection
         \thispagestyle{plain}
-        \addcontentsline{toc}{chapter}{Bibliography}
+        \addcontentsline{toc}{chapter}{\bibname}
 	\vspace*{\fill}
 	\begin{center}{\heading \bibname}\end{center}%
 	\vspace*{\fill}
 	\clearpage
       \else
         \chapter*{\bibname}%
-        \addcontentsline{toc}{chapter}{Bibliography}
+        \addcontentsline{toc}{chapter}{\bibname}
       \fi
-     %\chapter*{\bibname}%
-     % \addcontentsline{toc}{chapter}{Bibliography}
       \@mkboth{\bibname}{\bibname}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -568,7 +567,7 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist
-  \end{singlespacing}
+  \end{singlespace}
 }
 % natbib is a commonly used package for formatting bibliographies. 
 % If using natbib, then we must redefine some things in this way
@@ -583,18 +582,15 @@
         \clearpage%
         \phantomsection
         \thispagestyle{plain}
-        \addcontentsline{toc}{chapter}{Bibliography}
+        \addcontentsline{toc}{chapter}{\bibname}
 	\vspace*{\fill}
 	\begin{center}{\heading \bibname}\end{center}%
 	\vspace*{\fill}
 	\clearpage
       \else
         \chapter*{\bibname}%
-        \addcontentsline{toc}{chapter}{Bibliography}
+        \addcontentsline{toc}{chapter}{\bibname}
       \fi
-    }
-    \renewcommand{\bibpreamble}{%
-      \singlespacing
     }
   }{}
 }
