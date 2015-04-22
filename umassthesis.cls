@@ -112,7 +112,7 @@
 %% Appendix related
 \newif\if@appendix
 \newcommand{\ext@toc}{toc}
-\newif\if@appendices \@appendicesfalse
+\newif\if@appendices \@appendicestrue
 % JH: added appendices flag above to handle multiple appendices.  Becomes true if \listofappendicies is called.
 % Authors: use \mainmatter before the main content
 %\renewcommand{\mainmatter}{%
@@ -217,7 +217,7 @@
   \vspace*{.5in}%
   {
     \begin{center}
-      \bf\MakeUppercase#1\\[1em]
+      \bf\MakeUppercase{#1}\\[1em]
     \end{center}
   }
   \end{singlespace}
@@ -248,20 +248,16 @@
   \end{singlespace}
 }
 
-\newcommand\listofappendices{%
-    \@appendicestrue % JH appendix code
-    \chapter*{\listappendixname}%
-    \begin{singlespace}
-      \addcontentsline{toc}{chapter}{\listappendixname}%
-      \@mkboth{\listappendixname}\listappendixname{}
-      \vskip 1em
-             {\parindent \z@ \raggedright \bf \appendixname{}\par}
-             %% the setcounter lines can be used if you wish to not list sections in the 
-             %% list of appendices. This is a bit of a hack
-             %\setcounter{tocdepth}{0}
-             \@starttoc{loa}%
-             %\setcounter{tocdepth}{4}
-    \end{singlespace}
+\newcommand\listofschemess{%
+  \chapter*{\listschemename}%
+  \begin{singlespace}
+    \addcontentsline{toc}{chapter}{\listschemename}%
+    \@mkboth{\listschemename}{\listschemename}
+    \vskip 1em
+           {\parindent \z@ \raggedright \bf Scheme{}\par}
+           \@starttoc{los}%
+
+  \end{singlespace}
 }
 
 \renewcommand\tableofcontents{%
@@ -304,41 +300,7 @@
      \par}%
   \fi}
 
-%this redefines the section headings somewhat, most importantly whether to include sections in the appendix in the list of appendices instead of in the table of contents
-\def\@sect#1#2#3#4#5#6[#7]#8{%
-  \ifnum #2>\c@secnumdepth
-    \let\@svsec\@empty
-  \else
-    \refstepcounter{#1}%
-    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
-  \fi
-  \@tempskipa #5\relax
-  \ifdim \@tempskipa>\z@
-    \begingroup
-      #6{%
-        \@hangfrom{\hskip #3\relax\@svsec}%
-        \interlinepenalty \@M #8\@@par}%
-      \endgroup
-      \csname #1mark\endcsname{#7}%
-      \addcontentsline{\ext@toc}{#1}{%
-        \ifnum #2>\c@secnumdepth \else
-        \protect\numberline{\csname the#1\endcsname}%
-        \fi
-        #7}%
-  \else
-    \def\@svsechd{%
-      #6{\hskip #3\relax
-      \@svsec #8}%
-      \csname #1mark\endcsname{#7}%
-      \addcontentsline{\ext@toc}{#1}{%
-        \ifnum #2>\c@secnumdepth \else
-          \protect\numberline{\csname the#1\endcsname}%
-        \fi
-        #7}}%
-      %\fi
-  \fi
-  \@xsect{#5}
-}
+
 
 %% this is adapted from umthesis.cls. It defines the additional necessary
 % commands for creating the title page and other frontmatter material, e.g.
