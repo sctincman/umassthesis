@@ -416,7 +416,7 @@
       \vfill
           {A Dissertation Presented}\\[1em]
           {by}\\[1em]
-          {\@author}
+          {\MakeUppercase\@author}
     \end{center}
     \vfill
     Approved as to style and content by:\\
@@ -424,8 +424,13 @@
     \begin{flushright}
       \vfill
       \rule[.1em]{3in}{.1pt}\\
-      \@deptheadname, Department Head\\
-      \@deptheaddept
+      \parbox{3in}
+      {
+        \begin{flushleft}
+          \@deptheadname, Department Head\\
+          \@deptheaddept
+        \end{flushleft}
+      }
     \end{flushright}
   \end{singlespace}
   \newpage
