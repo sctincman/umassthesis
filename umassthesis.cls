@@ -88,7 +88,12 @@
 
 \LoadClass[letterpaper]{report}
 
+\usepackage{chemstyle}
+
 \renewcommand\l@chapter{\protect\vskip1em \@dottedtocline{0}{0em}{1.5em}}
+\renewcommand\l@figure{\protect \@dottedloxline{1}{0em}{2.6em}}
+\renewcommand\l@table{\protect \@dottedloxline{1}{0em}{2.6em}}
+\renewcommand\l@scheme{\protect \@dottedloxline{1}{0em}{2.6em}}
 \newcommand\prefacename{Preface}
 \renewcommand\abstractname{Abstract}
 \newcommand\dedicationname{Dedication}
@@ -153,7 +158,7 @@
 \newcommand{\appendixpage}{%
   \thispagestyle{plain}
   \vspace*{\fill}
-  \begin{center}{\heading \if@appendices \appendicesname \else \appendixname \fi}\end{center}% JH added appendixname alternative
+  \begin{center}{\heading \if@appendices \MakeUppercase{\appendicesname} \else \MakeUppercase{\appendixname} \fi}\end{center}% JH added appendixname alternative
   \vspace*{\fill}
   \clearpage%
 }
@@ -231,7 +236,7 @@
     \addcontentsline{toc}{chapter}{\listtablename}%
     \@mkboth{\listtablename}\listtablename{}
     \vskip 1em
-           {\parindent \z@ \raggedright \bf Table{}\par}
+           {\parindent \z@ \raggedright Table{} \hfill Page\par}
            \@starttoc{lot}%
   \end{singlespace}
 }
@@ -242,7 +247,7 @@
     \addcontentsline{toc}{chapter}{\listfigurename}%
     \@mkboth{\listfigurename}{\listfigurename}
     \vskip 1em
-           {\parindent \z@ \raggedright \bf Figure{}\par}
+           {\parindent \z@ \raggedright Figure{}\hfill Page \par}
            \@starttoc{lof}%
 
   \end{singlespace}
@@ -254,7 +259,7 @@
     \addcontentsline{toc}{chapter}{\listschemename}%
     \@mkboth{\listschemename}{\listschemename}
     \vskip 1em
-           {\parindent \z@ \raggedright \bf Scheme{}\par}
+           {\parindent \z@ \raggedright Scheme{}\hfill Page \par}
            \@starttoc{los}%
 
   \end{singlespace}
@@ -265,9 +270,13 @@
     \@mkboth{\contentsname}\contentsname{}}%
   \begin{singlespace}
     \pdfbookmark[0]{\contentsname}{contents}
+    {\parindent \z@ \raggedright \hfill Page \par}
     \@starttoc{toc}%
   \end{singlespace}
 }
+
+%denser dots
+\renewcommand\@dotsep{2}
 
 % There is likely a better way to do this, by accessing a depth counter of somesort
 \newcount\lasttocdepth
@@ -295,11 +304,29 @@
      % make sure we ~3 dots lead after title
      \leaders\hbox{$\m@th
         \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
-        mu$}\hskip 4em plus 1fill
+        mu$}\hskip 3em plus 1fill
      \nobreak
      \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
      \par}%
   \fi}
+
+\def\@dottedloxline#1#2#3#4#5{%
+  \vskip 1.0em \@plus\p@
+  {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+    \parindent #2\relax\@afterindenttrue
+    \interlinepenalty\@M
+    \leavevmode
+    \@tempdima #3\relax
+    \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+    {#4}\nobreak
+    % make sure we ~3 dots lead after title
+    \leaders\hbox{$\m@th
+      \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+      mu$}\hskip 3em plus 1fill
+    \nobreak
+    \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+    \par}%
+}
 
 %% this is adapted from umthesis.cls. It defines the additional necessary
 % commands for creating the title page and other frontmatter material, e.g.
