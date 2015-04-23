@@ -185,7 +185,7 @@
 \def\@chapter[#1]#2{
   \refstepcounter{chapter}%
   \typeout{\@chapapp\space\thechapter.}%
-  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
+  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter.}#1}%
   \chaptermark{#1}%
   \addtocontents{lof}{\protect\addvspace{10\p@}}%
   \addtocontents{lot}{\protect\addvspace{10\p@}}%
@@ -292,15 +292,14 @@
      \else
        {#4}\nobreak
      \fi
+     % make sure we ~3 dots lead after title
      \leaders\hbox{$\m@th
         \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
-        mu$}\hfill
+        mu$}\hskip 4em plus 1fill
      \nobreak
      \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
      \par}%
   \fi}
-
-
 
 %% this is adapted from umthesis.cls. It defines the additional necessary
 % commands for creating the title page and other frontmatter material, e.g.
